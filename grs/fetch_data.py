@@ -34,7 +34,8 @@ from dateutil.relativedelta import relativedelta
 
 TWSE_HOST = 'http://www.twse.com.tw/'
 TWSE_CONNECTIONS = urllib3.connection_from_url(TWSE_HOST)
-GRETAI_HOST = 'http://www.gretai.org.tw/'
+GRETAI_HOST = 'http://www.tpex.org.tw/'  #'http://www.gretai.org.tw/'
+
 GRETAI_CONNECTIONS = urllib3.connection_from_url(GRETAI_HOST)
 
 class FetchData(object):
@@ -502,3 +503,14 @@ class Stock(object):
             print e
 
         return stock_proxy
+
+# This is the standard boilerplate that calls the main() function.
+if __name__ == '__main__':
+    stock = Stock('2618')                         # 擷取長榮航股價
+    print stock.moving_average(5)                 # 計算五日均價與持續天數
+
+    # 擷取上櫃股價資訊
+    stock = Stock('8446')                         # 擷取華研股價
+    print stock.moving_average(5)                 # 計算五日均價與持續天數
+
+
