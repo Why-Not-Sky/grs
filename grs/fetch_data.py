@@ -34,8 +34,12 @@ from dateutil.relativedelta import relativedelta
 
 TWSE_HOST = 'http://www.twse.com.tw/'
 TWSE_CONNECTIONS = urllib3.connection_from_url(TWSE_HOST)
+<<<<<<< HEAD
 GRETAI_HOST = 'http://www.tpex.org.tw/'  #'http://www.gretai.org.tw/'
 
+=======
+GRETAI_HOST = 'http://www.tpex.org.tw/'
+>>>>>>> toomore/master
 GRETAI_CONNECTIONS = urllib3.connection_from_url(GRETAI_HOST)
 
 class FetchData(object):
