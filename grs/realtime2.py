@@ -129,6 +129,7 @@ class RealtimeTWSE(Realtime):
     _exchange = 'tse'
 
     def __init__(self, no, date=None):
+        # type: (object, object) -> object
         super(RealtimeTWSE, self).__init__(no, date)
 
 

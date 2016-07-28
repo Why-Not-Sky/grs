@@ -4,27 +4,32 @@
 
 from grs import Stock
 
-stock = Stock('2618')                         # 擷取長榮航股價
+TWSE_SYMBOL = '2618'
+
+stock = Stock(TWSE_SYMBOL)                         # 擷取長榮航股價
 print stock.moving_average(5)                 # 計算五日均價與持續天數
 print stock.moving_average_value(5)           # 計算五日均量與持續天數
 print stock.moving_average_bias_ratio(5, 10)  # 計算五日、十日乖離值與持續天數
 
 # 擷取 12 個月份資料
-stock = Stock('2618', 12)
+stock = Stock(TWSE_SYMBOL, 12)
 # 輸出 CSV 檔
-stock.out_putfile('/dev/shm/2618.csv')
+OUTUPT_DIRECTY = './'
+OUTPUT_FILE = OUTUPT_DIRECTY + TWSE_SYMBOL + '.csv'
+stock.out_putfile(OUTPUT_FILE)
 
 # 擷取上櫃股價資訊
 from grs import Stock
 
-stock = Stock('8446')                         # 擷取華研股價
+OTC_SYMBOL = '8446'
+stock = Stock(OTC_SYMBOL)                         # 擷取華研股價
 print stock.moving_average(5)                 # 計算五日均價與持續天數
 print stock.moving_average_value(5)           # 計算五日均量與持續天數
 print stock.moving_average_bias_ratio(5, 10)  # 計算五日、十日乖離值與持續天數
 
 # 如果已確定該代碼為上市或上櫃股票，可以直接指定參數跳過查表動作。
-stock = Stock('2618', twse=True) # 擷取長榮航股價
-stock = Stock('8446', otc=True)  # 擷取華研股價
+stock = Stock(TWSE_SYMBOL, twse=True) # 擷取長榮航股價
+stock = Stock(OTC_SYMBOL, otc=True)  # 擷取華研股價
 
 # 其他功能
 # 顯示台灣時間：TWTime
@@ -34,8 +39,8 @@ from grs import TWTime
 what_time = TWTime()
 what_time.now()        # 顯示台灣此刻時間
 what_time.localtime()  # 顯示當地此刻時間
-判斷台灣股市是否開市：TWSEOpen
 
+# 判斷台灣股市是否開市：TWSEOpen
 from grs import TWSEOpen
 from datetime import datetime
 
@@ -49,14 +54,14 @@ open_or_not.d_day(datetime(2012, 12, 22))  # 判斷 2012/12/22 是否開市
 # 上市即時資訊
 from grs import RealtimeTWSE
 
-realtime_stock = RealtimeTWSE('2618')   # 擷取長榮航即時股價
+realtime_stock = RealtimeTWSE(TWSE_SYMBOL)   # 擷取長榮航即時股價
 realtime_stock.raw                      # 原始資料
 realtime_stock.data                     # 回傳 type: dict
 
 # 上櫃即時資訊
 from grs import RealtimeOTC
 
-realtime_stock = RealtimeOTC('8446')    # 擷取華研即時股價
+realtime_stock = RealtimeOTC(OTC_SYMBOL)    # 擷取華研即時股價
 realtime_stock.raw                      # 原始資料
 realtime_stock.data                     # 回傳 type: dict
 
@@ -138,7 +143,7 @@ from grs import Stock
 
 stock = Stock('2618')                # 預設為抓取３個月份資料
 stock.moving_average(60)
-IndexError: list index out of range  # 資料不足
+# IndexError: list index out of range  # 資料不足
 len(stock.raw)                       # 回傳 51 個值
 stock.plus_mons(1)                   # 在抓取一個月資料
 len(stock.raw)                       # 回傳 66 個值
